@@ -223,7 +223,7 @@ export default function createListComponent({
           scrollDirection:
             prevState.scrollOffset < scrollOffset ? 'forward' : 'backward',
           scrollOffset: scrollOffset,
-          scrollUpdateWasRequested: true,
+          scrollUpdateWasRequested: false,
         };
       }, this._resetIsScrolling);
     }
