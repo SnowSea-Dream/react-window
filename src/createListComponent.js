@@ -212,6 +212,22 @@ export default function createListComponent({
       }, this._resetIsScrollingDebounced);
     }
 
+    scrollToForWindowScroll(scrollOffset: number): void {
+      scrollOffset = Math.max(0, scrollOffset);
+
+      this.setState(prevState => {
+        if (prevState.scrollOffset === scrollOffset) {
+          return null;
+        }
+        return {
+          scrollDirection:
+            prevState.scrollOffset < scrollOffset ? 'forward' : 'backward',
+          scrollOffset: scrollOffset,
+          scrollUpdateWasRequested: true,
+        };
+      }, this._resetIsScrolling);
+    }
+
     scrollToItem(index: number, align: ScrollToAlign = 'auto'): void {
       const { itemCount } = this.props;
       const { scrollOffset } = this.state;
